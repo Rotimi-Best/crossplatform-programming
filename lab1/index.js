@@ -1,5 +1,3 @@
-"use strict";
-
 const { log } = console;
 // VARIANT 15
 // Exercise 1 = 40
@@ -113,16 +111,51 @@ const generateAndAddToString = string => {
 
 // Exercise 3 = 107
 // 107. Вывести слова, в которых нет повторяющихся букв; буквы упорядочены по алфавиту; с длиной, максимальной в этой строке.
-// Print words that do not contain repeated letters; letters are sorted alphabetically; with a maximum length in this line.
+// Given the text. Print the words in which there are no duplicate letters and the letters of the word are arranged alphabetically.
 
 /* Algorithm
-=> 
+=> Get text or setence
+=> split into words
+=> check if a letter repeat itself in each word
+=> if atleast one repeat itself indicate the word
+=> rearrange the word in alphabetical order
+=> return all these words
 */
 
 /* Edge cases
-=> if not arg empty return undefined
-=> if not string return undefined
+=> if no arg return undefined
+=> if arg not string return undefined
 */
+
+/**
+ *
+ * Get words in a sentence that repeats itself
+ *
+ * @param {string} text A sentence
+ */
+const catchRepitition = text => {
+  if (!text || typeof text !== "string") {
+    return;
+  }
+
+  const words = text.split(" ");
+  let alphabetical = [];
+
+  for (const word of words) {
+    const regex = /([a-zA-Z]).*(\1)/.test(word);
+
+    if (regex) {
+      const splittedLetters = word.split("");
+      const sortedLetters = splittedLetters.sort();
+
+      alphabetical.push(sortedLetters.join(""));
+    }
+  }
+
+  return alphabetical;
+};
+
+log(catchRepitition("Best carried itt"));
 
 // Exercise 4 = 155
 // 155. Даны натуральные числа от 20 до 50. Напечатать те из них, которые делятся на 3, но не делятся на 5.
@@ -229,4 +262,4 @@ const calcNumOfHOursWorked = (N, m) => {
 };
 // 5 + 5.10 +5.20+5.30+5.40
 // 10.10 + 5.20 = 15.30+5.30 = 21 +5.40 = 26.40
-log(calcNumOfHOursWorked(5, 5));
+// log(calcNumOfHOursWorked(5, 5));
