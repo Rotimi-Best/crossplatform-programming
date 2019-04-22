@@ -1,0 +1,11 @@
+html(lang="en" style={'background-color': 'grey'})
+  head
+    title= title
+  body(style={ 'background-color': 'white', 'padding':'20px', 'margin': '50px auto', 'width': '50%' })
+    .container
+        h1 Title: #{book.name}
+        p 
+          strong Author: #{book.author}
+        p 
+          strong Availability: #{book.available}
+    a(href='/') Go back

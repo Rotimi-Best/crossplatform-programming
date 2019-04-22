@@ -1,0 +1,41 @@
+html(lang="en" style={'background-color': 'grey'})
+  head
+    title= title
+    script.
+      const filter = function(books) {
+        //- const book
+        books = books.sort((a, b) => a.date - b.date);
+        return books;
+      };
+      const delete = function(id) {
+        books = book.filter(book => book.id !== id);
+        return books
+      }
+    
+  body(style={ 'background-color': 'white', 'padding':'20px', 'margin': '50px auto', 'width': '50%' })
+    h1= message
+    .container
+      #actionbuttons(style={ 'overflow':'hidden' })
+        a(style={'float': 'left', 
+                        'padding':'0 0 0 10px', 
+                        'color': '-webkit-link',
+                        'cursor': 'pointer',
+                        'text-decoration': 'underline'
+                      } 
+                onclick='filter('+books+')' ) Filter
+        a(style={'float': 'left', 'padding':'0 0 0 10px'} href='/newbook' ) Add new
+      - for (let book of books)
+        .bookdiv(style={ 'overflow':'hidden' })
+          p.booktitle Book title: #{book.name}
+          a(style={'float': 'left', 'padding':'0 0 0 10px'} href='/' + book.url) Open
+          a(style={'float': 'left', 
+                    'padding':'0 0 0 10px', 
+                    'color': '-webkit-link',
+                    'cursor': 'pointer',
+                    'text-decoration': 'underline'
+                  } 
+            onclick='delete('+book.id+')') Delete
+          br
+          hr
+      
+      
